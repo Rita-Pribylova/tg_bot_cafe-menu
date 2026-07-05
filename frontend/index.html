@@ -1,0 +1,245 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+    <title>Уютное Кафе</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="https://telegram.org"></script>
+  </head>
+  <body>
+    <div class="header">
+      <h2>✨ Уютное Кафе ✨</h2>
+      <p>Выберите любимые блюда и напитки</p>
+    </div>
+
+    <!-- Секция КОФЕ -->
+    <div class="section-title">☕️ Бодрящий Кофе</div>
+    <div class="menu-grid">
+      <div class="card" data-id="1" data-name="Капучино" data-price="210">
+        <img src="img/cappuccino.jpg" alt="cappuccino" />
+        <h3>Капучино</h3>
+        <p class="price">210₽</p>
+        <div class="counter-container">
+          <button class="count-btn minus" onclick="changeCount(this, -1)">
+            ◀
+          </button>
+          <span class="count-value">0</span>
+          <button class="count-btn plus" onclick="changeCount(this, 1)">
+            ▶
+          </button>
+        </div>
+      </div>
+
+      <div class="card" data-id="2" data-name="Латте" data-price="210">
+        <img src="img/latte.jpg" alt="latte" />
+        <h3>Латте</h3>
+        <p class="price">210₽</p>
+        <div class="counter-container">
+          <button class="count-btn minus" onclick="changeCount(this, -1)">
+            ◀
+          </button>
+          <span class="count-value">0</span>
+          <button class="count-btn plus" onclick="changeCount(this, 1)">
+            ▶
+          </button>
+        </div>
+      </div>
+      <div class="card" data-id="3" data-name="Американо" data-price="190">
+        <img src="img/americano.jpg" alt="americano" />
+        <h3>Американо</h3>
+        <p class="price">190₽</p>
+        <div class="counter-container">
+          <button class="count-btn minus" onclick="changeCount(this, -1)">
+            ◀
+          </button>
+          <span class="count-value">0</span>
+          <button class="count-btn plus" onclick="changeCount(this, 1)">
+            ▶
+          </button>
+        </div>
+      </div>
+      <div class="card" data-id="4" data-name="Эспрессо" data-price="190">
+        <img src="img/espresso.jpg" alt="espresso" />
+        <h3>Эспрессо</h3>
+        <p class="price">190₽</p>
+        <div class="counter-container">
+          <button class="count-btn minus" onclick="changeCount(this, -1)">
+            ◀
+          </button>
+          <span class="count-value">0</span>
+          <button class="count-btn plus" onclick="changeCount(this, 1)">
+            ▶
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Секция ВЫПЕЧКА -->
+    <div class="section-title">🥐 Свежая Выпечка</div>
+    <div class="menu-grid">
+      <div
+        class="card"
+        data-id="5"
+        data-name="Круассан классический"
+        data-price="150"
+      >
+        <img src="img/croissant.jpg" alt="croissant" />
+        <h3>Круассан</h3>
+        <p class="price">150₽</p>
+        <div class="counter-container">
+          <button class="count-btn minus" onclick="changeCount(this, -1)">
+            ◀
+          </button>
+          <span class="count-value">0</span>
+          <button class="count-btn plus" onclick="changeCount(this, 1)">
+            ▶
+          </button>
+        </div>
+      </div>
+
+      <div
+        class="card"
+        data-id="6"
+        data-name="Чизкейк Нью-Йорк"
+        data-price="240"
+      >
+        <img src="img/cheesecake.jpg" alt="cheesecake" />
+        <h3>Чизкейк</h3>
+        <p class="price">240₽</p>
+        <div class="counter-container">
+          <button class="count-btn minus" onclick="changeCount(this, -1)">
+            ◀
+          </button>
+          <span class="count-value">0</span>
+          <button class="count-btn plus" onclick="changeCount(this, 1)">
+            ▶
+          </button>
+        </div>
+      </div>
+      <div
+        class="card"
+        data-id="7"
+        data-name="Пицца Маргарита"
+        data-price="300"
+      >
+        <img src="img/pizza.jpg" alt="pizza" />
+        <h3>Пицца Маргарита</h3>
+        <p class="price">300₽</p>
+        <div class="counter-container">
+          <button class="count-btn minus" onclick="changeCount(this, -1)">
+            ◀
+          </button>
+          <span class="count-value">0</span>
+          <button class="count-btn plus" onclick="changeCount(this, 1)">
+            ▶
+          </button>
+        </div>
+      </div>
+      <div class="card" data-id="8" data-name="Сырная пицца" data-price="300">
+        <img src="img/cheese_pizza.jpg" alt="cheese_pizza" />
+        <h3>Сырная пицца</h3>
+        <p class="price">300₽</p>
+        <div class="counter-container">
+          <button class="count-btn minus" onclick="changeCount(this, -1)">
+            ◀
+          </button>
+          <span class="count-value">0</span>
+          <button class="count-btn plus" onclick="changeCount(this, 1)">
+            ▶
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Всплывающий контейнер с кнопкой оформления заказа -->
+    <div class="checkout-container" id="checkout-box" style="display: none">
+      <button class="html-checkout-btn" onclick="sendOrderData()">
+        🛒 Оформить заказ
+      </button>
+    </div>
+
+    <script>
+      const tg = window.Telegram.WebApp;
+      tg.expand();
+      tg.ready();
+
+      let cart = {};
+
+      function changeCount(button, change) {
+        const card = button.closest(".card");
+        const id = card.getAttribute("data-id");
+        const name = card.getAttribute("data-name");
+        const price = parseInt(card.getAttribute("data-price"));
+        const countSpan = card.querySelector(".count-value");
+
+        let currentCount = parseInt(countSpan.innerText) + change;
+        if (currentCount < 0) currentCount = 0;
+
+        countSpan.innerText = currentCount;
+
+        if (currentCount > 0) {
+          cart[id] = { name: name, price: price, count: currentCount };
+          card.classList.add("selected");
+        } else {
+          delete cart[id];
+          card.classList.remove("selected");
+        }
+
+        updateMainButton();
+      }
+
+      function updateMainButton() {
+        let totalItems = 0;
+        let totalPrice = 0;
+        let cartArray = [];
+
+        for (let id in cart) {
+          totalItems += cart[id].count;
+          totalPrice += cart[id].price * cart[id].count;
+          for (let i = 0; i < cart[id].count; i++) {
+            cartArray.push({ name: cart[id].name, price: cart[id].price });
+          }
+        }
+
+        const checkoutBox = document.getElementById("checkout-box");
+        const htmlBtn = document.querySelector(".html-checkout-btn");
+
+        if (totalItems > 0) {
+          // Встроенная кнопка Telegram (для мобильных)
+          if (tg.MainButton) {
+            tg.MainButton.text = `🛒 Оформить заказ: ${totalPrice}₽`;
+            tg.MainButton.show();
+          }
+
+          // ИСПРАВЛЕНО: Удалена двойная опечатка style.style.display
+          if (checkoutBox && htmlBtn) {
+            checkoutBox.style.display = "block";
+            htmlBtn.innerText = `🛒 Оформить заказ: ${totalPrice}₽`;
+          }
+          window.currentCartData = cartArray;
+        } else {
+          if (tg.MainButton) tg.MainButton.hide();
+          if (checkoutBox) checkoutBox.style.display = "none";
+        }
+      }
+
+      function sendOrderData() {
+        if (window.currentCartData && window.currentCartData.length > 0) {
+          tg.sendData(JSON.stringify(window.currentCartData));
+          tg.close();
+        }
+      }
+
+      if (tg.MainButton) {
+        tg.onEvent("mainButtonClicked", function () {
+          tg.sendData(JSON.stringify(window.currentCartData));
+          tg.close();
+        });
+      }
+    </script>
+  </body>
+</html>

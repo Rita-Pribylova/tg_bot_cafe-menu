@@ -1,0 +1,13 @@
+.env
+
+
+*.db
+cafe.db
+
+
+venv/
+.venv/
+
+
+__pycache__/
+*.pyc
